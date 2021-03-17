@@ -13,5 +13,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val crashButton = Button(this)
+        crashButton.text = "Crash MainActivity!"
+        crashButton.setOnClickListener {
+            startActivity(Intent(this, TestActivity::class.java))
+        }
+
+        addContentView(
+            crashButton, ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
     }
 }
