@@ -1,15 +1,18 @@
 package com.example.testefirebase
 
-import android.content.Intent
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mylibrary.TestActivity
+
 
 class MainActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val crashButton = Button(this)
         crashButton.text = "Crash MainActivity!"
         crashButton.setOnClickListener {
-            startActivity(Intent(this, TestActivity::class.java))
+            throw RuntimeException("Test Crash") // Force a crash
         }
 
         addContentView(
@@ -26,6 +29,5 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         )
-
     }
 }
